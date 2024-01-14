@@ -1,0 +1,31 @@
+{{ with .Params.css }}<link rel="stylesheet" href="/{{ path.Join $.Page.File.Dir . }}" type="text/css"> {{ end }}
+{{ with .Params.mathjax }}
+  {{ if eq . 3}}
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']]
+      },
+      chtml: {
+        displayAlign: 'left',
+        displayIndent: '2em',   //extra indentataion
+        mtextInheritFont: true  //make mtext elements use surrounding font
+      }
+    };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+  {{ else }}
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      displayAlign: 'left',
+      displayIndent: '2em',   //extra indentataion
+      "HTML-CSS": {
+        mtextFontInherit: true  //make mtext elements use surrounding font
+      },
+      "CommonHTML": { linebreaks: { automatic: true } }
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+  {{ end }}
+{{ end }}
