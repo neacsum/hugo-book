@@ -1,0 +1,15 @@
+<!-- 
+  Partial to generate menu page name from MenuTitle parameter.
+  If parameter is missing defaults to title partial to find the page name.
+  
+  Accepts Page as context
+-->
+{{ $title := "" }}
+
+{{ if .Param "MenuTitle" }}
+  {{ $title = .Param "MenuTitle" }}
+{{ else }}
+  {{ $title = partial "docs/title" . }}
+{{ end }}
+
+{{ return $title }}
