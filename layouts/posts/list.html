@@ -1,5 +1,9 @@
 {{ define "main" }}
-  {{ range .Pages.ByDate.Reverse }}
+  {{ $pages := .Pages.ByDate }}
+  {{ if .Site.Params.book.ReversePostOrder }}
+    {{ $pages = $pages.Reverse }}
+  {{ end }}
+  {{ range $pages }}
   <article class="markdown book-post">
     <h2>
       <a href="{{ .RelPermalink }}">{{ partial "docs/title.html" . }}</a>
@@ -14,7 +18,7 @@
   </article>
   {{ end }}
 
-  {{ template "_internal/pagination.html" . }}
+  {{ partial "pagination.html" . }}
 {{ end }}
 
 {{ define "toc" }}
