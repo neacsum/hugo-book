@@ -3,11 +3,8 @@
   <h1>
     {{ partial "docs/title.html" . }}
   </h1>
-  {{ partial "docs/post-meta" . }}
+  {{- partial "posts/meta" . -}}
   {{- .Content -}}
 </article>
 {{ end }}
 
-{{ define "toc" }}
-  {{ partial "docs/toc" . }}
-{{ end }}

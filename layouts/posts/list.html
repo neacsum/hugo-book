@@ -8,7 +8,7 @@
     <h2>
       <a href="{{ .RelPermalink }}">{{ partial "docs/title.html" . }}</a>
     </h2>
-    {{ partial "docs/post-meta" . }}
+    {{- partial "posts/meta" . -}}
     <div class="book-post-content">
       {{- .Summary -}}
       {{ if .Truncated }}

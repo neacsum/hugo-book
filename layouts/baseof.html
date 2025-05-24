@@ -61,7 +61,7 @@
 {{ define "comments" }}
   {{ if and .Content (default true (default .Site.Params.BookComments .Params.BookComments)) }}
   <div class="book-comments">
-    {{- partial "docs/comments" . -}}
+    {{- partial "comments" . -}}
   </div>
   {{ end }}
 {{ end }}
@@ -73,5 +73,5 @@
 {{ end }}
 
 {{ define "toc" }}
-  {{ partial "docs/toc" . }}
+  {{- partial "toc" . -}}
 {{ end }}
