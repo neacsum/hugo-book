@@ -9,7 +9,7 @@
 {{ if .Param "MenuTitle" }}
   {{ $title = .Param "MenuTitle" }}
 {{ else }}
-  {{ $title = partial "docs/title" . }}
+  {{ $title = partial "title" . }}
 {{ end }}
 
 {{ return $title }}
