@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ default .Site.Language.Lang .Site.LanguageCode  }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
 <head>
-  {{ partial "docs/html-head" . }}
+  {{ partial "html-head" . }}
   {{ partial "head" . }}
 </head>
 <body dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
@@ -41,11 +41,11 @@
 </html>
 
 {{ define "menu" }}
-  {{ partial "docs/menu" . }}
+  {{ partial "menu" . }}
 {{ end }}
 
 {{ define "header" }}
-  {{ partial "docs/header" . }}
+  {{ partial "header" . }}
 
   {{ if default true (default .Site.Params.BookToC .Params.BookToC) }}
   <aside class="hidden clearfix">
