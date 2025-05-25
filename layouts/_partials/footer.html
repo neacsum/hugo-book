@@ -1,0 +1,26 @@
+{{ if and .Site.Params.Book.Repo .Page.File }}
+  <div class="flex flex-wrap justify-between">
+  {{ if .GitInfo }}
+    <div>
+      {{- $date := partial "date" (dict "Date" .GitInfo.AuthorDate.Local "Format" .Site.Params.Book.DateFormat) -}}
+      <a class="flex align-center" href="{{- partial "links/view" . -}}" title='{{ i18n "Last modified by" }} {{ .GitInfo.AuthorName }} | {{ $date }}' rel="noopener">
+        <img src="{{ "svg/calendar.svg" | relURL }}" class="book-icon" alt="" />
+        <span>{{ $date }}</span>
+      </a>
+    </div>
+  {{ end }}
+  {{ if .Site.Params.Book.EditPath }}
+    <div>
+      <a class="flex align-center" href="{{ partial "links/edit" . }}" target="_blank" rel="noopener">
+        <img src="{{ "svg/edit.svg" | relURL }}" class="book-icon" alt="" />
+        <span>{{ i18n "Edit this page" }}</span>
+      </a>
+    </div>
+  {{ end }}
+  </div>
+{{ end }}
+
+{{ $script := resources.Get "clipboard.js" | resources.Minify }}
+{{ with $script.Content }}
+  <script>{{ . | safeJS }}</script>
+{{ end }}

@@ -1,0 +1,5 @@
+{{ if .Site.Params.Book.ViewPath }}
+  {{- path.Join .Site.Params.Book.Repo .Site.Params.Book.ViewPath "content" .Page.File.Path -}}
+{{ else }}
+  {{- "#" -}}
+{{ end }}
