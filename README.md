@@ -1,8 +1,18 @@
 # Hugo Book Theme
 
-[![Hugo](https://img.shields.io/badge/hugo-0.134-blue.svg)](https://gohugo.io)
+[![Hugo](https://img.shields.io/badge/hugo-0.147-blue.svg)](https://gohugo.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-![Build with Hugo](https://github.com/alex-shpak/hugo-book/workflows/Build%20with%20Hugo/badge.svg)
+
+### A forked version of Alex Shpak's [Hugo-book](https://github.com/alex-shpak/hugo-book/)
+
+Main reason for forking was to update the theme for the new Hugo template structure introduced at version 0.146. You can read about it [here](https://gohugo.io/templates/new-templatesystem-overview/).
+
+At the same time I took the liberty to make some changes (and maybe introduce some bugs):
+-  Configuration parameters are grouped under the [Params.Book] section of Hugo configuration file.
+-  The left (main) menu shows all pages in `content` directory by default (as opposed to `content\docs`).
+-  Removed Google Analytics and Disqus integrations.
+
+
 
 ### [Hugo](https://gohugo.io) documentation theme as simple as plain book
 
@@ -23,7 +33,7 @@
 - Clean simple design
 - Light and Mobile-Friendly
 - Multi-language support
-- Customisable
+- Customizable
 - Zero initial configuration
 - Handy shortcodes
 - Comments support
@@ -33,7 +43,7 @@
 
 ## Requirements
 
-- Hugo 0.134 or higher
+- Hugo 0.146 or higher
 - Hugo extended version, [Installation Instructions](https://gohugo.io/installation/)
 
 ## Installation
@@ -42,7 +52,7 @@
 Navigate to your hugo project root and run:
 
 ```
-git submodule add https://github.com/alex-shpak/hugo-book themes/hugo-book
+git submodule add https://github.com/neacsum/hugo-book themes/hugo-book
 ```
 
 Then run hugo (or set `theme = "hugo-book"`/`theme: hugo-book` in configuration file)
@@ -65,7 +75,7 @@ Navigate to your hugo project root and add [module] section to your `hugo.toml`:
 ```toml
 [module]
 [[module.imports]]
-path = 'github.com/alex-shpak/hugo-book'
+path = 'github.com/neacsum/hugo-book'
 ```
 
 Then, to load/update the theme module and run hugo:
@@ -75,43 +85,24 @@ hugo mod get -u
 hugo server --minify
 ```
 
-### Creating site from scratch
-
-Below is an example on how to create a new site from scratch:
-
-```sh
-hugo new site mydocs; cd mydocs
-git init
-git submodule add https://github.com/alex-shpak/hugo-book themes/hugo-book
-cp -R themes/hugo-book/exampleSite/content.en/* ./content
-```
-
-```sh
-hugo server --minify --theme hugo-book
-```
-
 ## Menu
 
-By default, the theme will render pages from the `content/docs` section as a menu in a tree structure.  
-You can set `title` and `weight` in the front matter of pages to adjust the order and titles in the menu, as well as other parameters to hide or alter urls in the menu. You can choose which folder to use for generating menu with `BookSection` configuration parameter.
+By default, the theme will render pages from the `content`[^1] section as a menu in a tree structure.  
+You can set `title` and `weight` in the front matter of pages to adjust the order and titles in the menu, as well as other parameters to hide or alter urls in the menu. You can choose which folder to use for generating menu with `Section` configuration parameter.
+[^1]: The original version was using `content\docs` folder.
 
 ## Blog
 
 A simple blog is supported in the section `posts`.  
-A blog is not the primary usecase of this theme, so it has only minimal features.
+A blog is not the primary use case of this theme, so it has only minimal features.
 
 ## Configuration
 
 ### Site Configuration
 
 There are a few configuration options that you can add to your `hugo.toml` file.  
-You can also see the `yaml` example [here](https://github.com/alex-shpak/hugo-book/blob/master/exampleSite/hugo.yaml).
 
 ```toml
-# (Optional) Set Google Analytics if you use it to track your website.
-# Always put it on the top of the configuration file, otherwise it won't work
-googleAnalytics = "UA-XXXXXXXXX-X"
-
 # (Optional) If you provide a Disqus shortname, comments will be enabled on
 # all pages.
 disqusShortname = "my-site"
@@ -170,12 +161,6 @@ disableKinds = ['taxonomy', 'taxonomyTerm']
   # Index is built on fly, therefore it might slowdown your website.
   # Configuration for indexing can be adjusted in i18n folder per language.
   BookSearch = true
-
-  # (Optional, default true) Enables comments template on pages
-  # By default partials/docs/comments.html includes Disqus template
-  # See https://gohugo.io/content-management/comments/#configure-disqus
-  # Can be overwritten by same param in page frontmatter
-  BookComments = true
 
   # /!\ This is an experimental feature, might be removed or changed at any time
   # (Optional, experimental, default false) Enables portable links and link checks in markdown pages.
