@@ -8,14 +8,15 @@
         <span>{{ $date }}</span>
       </a>
     </div>
-  {{ end }}
-  {{ if .Site.Params.Book.EditPath }}
+  {{ else }}
     <div>
-      <a class="flex align-center" href="{{ partial "links/edit" . }}" target="_blank" rel="noopener">
-        <img src="{{ "svg/edit.svg" | relURL }}" class="book-icon" alt="" />
-        <span>{{ i18n "Edit this page" }}</span>
+      {{- $date := partial "date" (dict "Date" .Lastmod "Format" .Site.Params.Book.DateFormat) -}}
+      <a class="flex align-center" href="{{- partial "links/view" . -}}" rel="noopener">
+        <img src="{{ "svg/calendar.svg" | relURL }}" class="book-icon" alt="" />
+        <span>{{ $date }}</span>
       </a>
     </div>
+
   {{ end }}
   </div>
 {{ end }}

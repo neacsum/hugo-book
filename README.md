@@ -87,7 +87,7 @@ hugo server --minify
 
 ## Menu
 
-By default, the theme will render pages from the `content`[^1] section as a menu in a tree structure.  
+By default, the theme will render pages from the `content`[^1] directory as a menu in a tree structure.  
 You can set `title` and `weight` in the front matter of pages to adjust the order and titles in the menu, as well as other parameters to hide or alter urls in the menu. You can choose which folder to use for generating menu with `Section` configuration parameter.
 [^1]: The original version was using `content\docs` folder.
 
